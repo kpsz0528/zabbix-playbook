@@ -1,0 +1,33 @@
+---
+
+- name: web
+  hosts: ###
+  become: true
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: restart & enable httpd
+      service:
+        name: httpd
+        state: restarted
+        enabled: true
+
+    - name: install git
+      yum:
+        name: git
+        state: present
+
+    - name: remove file
+      shell: "rm -rf ##"
+      args:
+        warn: no
+
+    - name: get html
+      shell: "git clone ###"
+
+    - name: mv index
+      shell: "mv -f ./###/* /var/www/html/"
+
