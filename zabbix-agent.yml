@@ -17,13 +17,16 @@
 #    - name: clean yum
 #      shell: "yum -y lovalinstall zabbix-release-5.0-1.el7.noarch.rpm"
 
+    - name: install epel-release
+      shell: "yum -y install epel-release"
+      
     - name: install zabbix-agent
       shell: "yum -y install zabbix-agent"
 
     - name: config zabbix agent
       template:
         src: zabbix-agentd.conf.j2
-        dest: /etc/zabbix/zabbix_agentd.conf
+        dest: /etc/zabbix_agentd.conf
         owner: root
         group: root
 
